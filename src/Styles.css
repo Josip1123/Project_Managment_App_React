@@ -95,10 +95,16 @@ form{
             height: 2rem;
         }
     }
-    button {
+    .Submit-btn {
+        all: unset;
+        text-align: center;
         height: 2.5rem;
-        max-width: 50%;
+        width: 10rem;
         margin: 0 auto;
+        cursor: pointer;
+        color: white;
+        background-color: darkgreen;
+        border-radius: .5rem;
     }
 
     .isCompletedCheckbox{

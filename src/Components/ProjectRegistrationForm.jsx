@@ -17,7 +17,7 @@ const ProjectRegistrationForm = () => {
                 <input type="date" id="date-due" name="dateDue"/>
             </div>
             <div className={"isCompletedCheckbox"}>
-                <label>Is Completed?</label>
+                <label>Is It Completed?</label>
                 <input type="checkbox" id="is-completed" name="isCompleted"/>
             </div>
 
@@ -60,7 +60,7 @@ const ProjectRegistrationForm = () => {
             </div>
 
             <div>
-                <button type="">Create Project</button>
+                <button className={"Submit-btn"} type="">Create Project</button>
             </div>
         </form>
 
