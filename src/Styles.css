@@ -7,6 +7,10 @@
 body{
     font-family: "Roboto Light", serif;
 }
+
+main{
+    padding: 1.5rem;
+}
 nav{
     padding: 1rem;
     ul{
@@ -27,17 +31,18 @@ nav{
         }
     }
 
-    .new-project {
+    .home{
         display: flex;
         justify-content: center;
         align-items: center;
         color: white;
         width: 100%;
         height: 100%;
-        background-color: darkgreen;
+        background-color: rosybrown;
         border-radius: 0.5rem;
-        padding-inline: 1rem;
+        padding: 1.5rem;
     }
+
     .show-projects {
         display: flex;
         justify-content: center;
@@ -47,7 +52,7 @@ nav{
         height: 100%;
         background-color: cadetblue;
         border-radius: 0.5rem;
-        padding-inline: 1rem;
+        padding: 1.5rem;
     }
 
     .edit-project {
@@ -59,7 +64,7 @@ nav{
         height: 100%;
         background-color: darkorange;
         border-radius: 0.5rem;
-        padding-inline: 1rem;
+        padding: 1.5rem;
     }
 
     .dropdown-customer{
@@ -118,5 +123,29 @@ form{
             display: flex;
             flex: 0 0 15%;
         }
+    }
+}
+
+.project-list {
+    margin: 5rem auto;
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    max-width: max-content;
+    .project-list-item{
+        padding: 1rem;
+        line-height: 1.50;
+    }
+    .delete-btn{
+        all: unset;
+        text-align: center;
+        height: 2rem;
+        width: 5rem;
+        margin: 0 auto;
+        cursor: pointer;
+        color: white;
+        background-color: darkred;
+        border-radius: .5rem;
     }
 }

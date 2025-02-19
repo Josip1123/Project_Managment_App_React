@@ -3,12 +3,11 @@ const Navbar = () => {
     return (
         <nav>
             <ul>
+                <li><a className={"home"} href="/">Create Project</a></li>
 
-                <li><a className={"new-project"} href="/create-project">Create New Project</a></li>
+                <li><a className={"show-projects"} href="/all">Show All Projects</a></li>
 
-                <li><a className={"show-projects"} href="/show-projects">Show All Projects</a></li>
-
-                <li><a className={"edit-project"} href="/show-projects">Edit Project</a></li>
+                <li><a className={"edit-project"} href="/edit-projects">Edit Project</a></li>
 
 
                 <li>

@@ -6,6 +6,7 @@ import EditProjectOwner from "./Pages/EditProjectOwner.jsx";
 import EditCustomer from "./Pages/EditCustomer.jsx";
 import EditServices from "./Pages/EditServices.jsx";
 import CreateProject from "./Pages/CreateProject.jsx";
+import Navbar from "./Components/Navbar.jsx";
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
   return (
       <BrowserRouter >
           <main>
+              <Navbar/>
             <Routes>
                   <Route path="/" element={<CreateProject />} />
                   <Route path="/all" element={<AllProjects />} />
