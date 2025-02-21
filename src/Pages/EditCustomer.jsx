@@ -1,24 +1,19 @@
-import {useEffect, useState} from "react";
+import {useState} from "react";
 
-
-const EditProject = () => {
-
+const EditCustomer = () => {
     const [id, setId] = useState("");
-    const [project, setProject] = useState();
+    const [customer, setCustomer] = useState();
     const [showForm, setShowForm] = useState(true);
     const [isSuccess, setIsSuccess] = useState(false);
 
     const [name, setName] = useState("");
-    const [dateDue, setDateDue] = useState("");
-    const [isCompleted, setIsCompleted] = useState(false);
+    const [email, setEmail] = useState("");
+    const [projectId, setProjectId] = useState("");
 
-    const url = "http://localhost:5041/api/Project";
 
-    useEffect(()=>{
-        setIsSuccess("");
-    }, [])
+    const url = "http://localhost:5041/api/Customer";
 
-    const handleGetProject = async (id) => {
+    const handleGetCustomer = async (id) => {
         try {
             const response = await fetch(`${url}/${id}`, {
                 method: "GET",
@@ -28,17 +23,17 @@ const EditProject = () => {
             });
 
             if (!response.ok) {
-                console.log(`Failed to get project: ${response.status}`);
-                setIsSuccess("noUser")
+                console.log(`Failed to get customer: ${response.status}`);
+                setIsSuccess("noUser");
             }
 
 
             const result = await response.json();
 
-            setProject(result);
+            setCustomer(result);
             setName(result.name);
-            setDateDue(result.dateDue);
-            setIsCompleted(result.isCompleted);
+            setEmail(result.email);
+            setProjectId(result.projectId)
 
             console.log("Server response:", result);
         } catch (error) {
@@ -47,13 +42,13 @@ const EditProject = () => {
 
     };
 
-    const handleUpdateProject = async (event) => {
+    const handleUpdateCustomer = async (event) => {
         event.preventDefault();
 
         const updatedProject = {
             name: name,
-            dateDue: dateDue,
-            isCompleted: isCompleted,
+            email: email,
+            projectId: projectId
         };
 
         try {
@@ -76,29 +71,29 @@ const EditProject = () => {
             setShowForm(false);
             setIsSuccess("true");
         } catch (error) {
-            console.log("Error updating project:", error);
+            console.log("Error updating customer:", error);
         }
     };
 
     return (
 
         <div className={"project-edit"}>
-            <h1>Edit Your Project Here</h1>
-            <h2>Type in ID of the Project you would like to edit</h2>
-            {!project &&(
+            <h1>Edit Customer Here</h1>
+            <h2>Type in ID of the Customer you would like to edit</h2>
+            {!customer &&(
                 <div className={"id-register-form"}>
-                <label htmlFor="project-id"></label>
-                <input type="text" id="project-id" name="projectId" value={id} placeholder={"Project ID"}
-                       onChange={(e) => setId(e.target.value)} required/>
-                <button className={"main-btn"} onClick={() => handleGetProject(id)}>Load Project</button>
-            </div>
+                    <label htmlFor="project-id"></label>
+                    <input type="text" id="project-id" name="projectId" value={id} placeholder={"Customer ID"}
+                           onChange={(e) => setId(e.target.value)} required/>
+                    <button className={"main-btn"} onClick={() => handleGetCustomer(id)}>Load Customer</button>
+                </div>
             )}
 
 
-            {project && showForm && (
-                <form onSubmit={handleUpdateProject}>
+            {customer && showForm && (
+                <form onSubmit={handleUpdateCustomer}>
                     <div>
-                        <label htmlFor="project-name">Project Name:</label>
+                        <label htmlFor="project-name">Customer Name:</label>
                         <input
                             type="text"
                             id="project-name"
@@ -109,29 +104,21 @@ const EditProject = () => {
                         />
                     </div>
                     <div>
-                        <label htmlFor="date-due">Date Due:</label>
+                        <label htmlFor="date-due">Email:</label>
                         <input
-                            type="date"
+                            type="email"
                             id="date-due"
                             name="dateDue"
-                            value={dateDue}
-                            onChange={(e) => setDateDue(e.target.value)}
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
                             required
                         />
                     </div>
-                    <div className="isCompletedCheckbox">
-                        <label htmlFor="is-completed">Is Completed?</label>
-                        <input
-                            type="checkbox"
-                            id="is-completed"
-                            name="isCompleted"
-                            checked={isCompleted}
-                            onChange={(e) => setIsCompleted(e.target.checked)}
-                        />
-                    </div>
-                    <button className={"update-btn"} type="submit">Update Project</button>
+
+                    <button className={"update-btn"} type="submit">Update Customer</button>
                 </form>
             )}
+
             {isSuccess === "true" &&(
                 <div className={"success"}>{"Project updated successfully"}</div>
             )}
@@ -145,4 +132,4 @@ const EditProject = () => {
     );
 };
 
-export default EditProject;
+export default EditCustomer;

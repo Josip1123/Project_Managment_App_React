@@ -9,8 +9,8 @@ function CustomerDropdown() {
 
             <Dropdown.Menu>
                 <Dropdown.Item href="/create_customer">Create Customer</Dropdown.Item>
-                <Dropdown.Item href="/">Show All Customers</Dropdown.Item>
-                <Dropdown.Item href="/">Edit Customer</Dropdown.Item>
+                <Dropdown.Item href="/all_customers">Show All Customers</Dropdown.Item>
+                <Dropdown.Item href="/edit_customers">Edit Customer</Dropdown.Item>
             </Dropdown.Menu>
         </Dropdown>
     );

@@ -46,7 +46,6 @@ const ProjectRegistrationForm = () => {
             }
 
             const result = await response.json();
-            setIsSuccess(true)
             console.log("Server response:", result);
             setIsSuccess("true")
 
