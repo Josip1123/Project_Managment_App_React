@@ -1,11 +1,18 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 const ProjectRegistrationForm = () => {
 
     const [name, setName] = useState("");
     const [isCompleted, setIsCompleted] = useState(false);
     const [dateDue, setDateDue] = useState("");
+    const [isSuccess, setIsSuccess] = useState("");
     const url = "http://localhost:5041/api/Project";
+
+    //to reset isSuccess state
+    useEffect(()=>{
+        setIsSuccess("");
+    }, [])
+
     const handleReset = () => {
 
         setName("");
@@ -15,6 +22,7 @@ const ProjectRegistrationForm = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+
 
         const data = {
             name: name,
@@ -34,10 +42,13 @@ const ProjectRegistrationForm = () => {
 
             if (!response.ok) {
                 console.log(`Server error: ${response.status}`);
+                setIsSuccess("false");
             }
 
             const result = await response.json();
+            setIsSuccess(true)
             console.log("Server response:", result);
+            setIsSuccess("true")
 
         } catch (error) {
             console.error('Error creating project:', error);
@@ -46,7 +57,7 @@ const ProjectRegistrationForm = () => {
     };
 
     return (
-        <>
+        <div className={"create"}>
 
         <h1>Register a Project!</h1>
 
@@ -65,10 +76,12 @@ const ProjectRegistrationForm = () => {
                     <input type="checkbox" id="is-completed" name="isCompleted" checked={isCompleted} onChange={(e) => setIsCompleted(e.target.checked)}/>
                 </div>
 
-                <button className={"Submit-btn"} type={"submit"} >Submit</button>
+                <button className={"submit-btn"} type={"submit"} >Submit</button>
             </form>
+            {isSuccess === "true" ? <span className={"success"}>Customer saved successfully</span> : "" }
+            {isSuccess === "false" ? <span className={"error"}>Something went wrong, try again later</span> : ""}
 
-        </>
+        </div>
     );
 };
 
