@@ -1,24 +1,24 @@
 import {useEffect, useState} from "react";
 
-const AllCustomers = () => {
+const AllServices = () => {
 
-    const [customers, setCustomers] = useState([]);
-    const url = "http://localhost:5041/api/Customer";//localhost:5041/api/project"
+    const [servicess, setServicess] = useState([]);
+    const url = "http://localhost:5041/api/Service";//localhost:5041/api/project"
 
     useEffect(() => {
         async function fetchData() {
             try{
                 const response = await fetch(url);
                 const data = await response.json();
-                setCustomers(data);
+                setServicess(data);
 
                 if (!response.ok) {
-                    console.log(`Failed to get customers: ${response.status}`);
+                    console.log(`Failed to get services: ${response.status}`);
                 }
 
 
             } catch (error) {
-                console.log("error getting projects", error);
+                console.log("error getting service", error);
             }
         }
 
@@ -37,15 +37,15 @@ const AllCustomers = () => {
                 body: JSON.stringify({id})
             });
             if (!response.ok) {
-                console.log(`Failed to delete customer: ${response.status}`);
+                console.log(`Failed to delete service: ${response.status}`);
             }
 
-            setCustomers(p => p.filter(project => project.id !== id));
+            setServicess(p => p.filter(project => project.id !== id));
 
             const result = await response.json();
             console.log("Server response:", result);
         } catch (error) {
-            console.log("Error deleting project:", error);
+            console.log("Error deleting service:", error);
         }
 
     };
@@ -53,12 +53,13 @@ const AllCustomers = () => {
 
     return (
         <>
-            <h1>Showing all customers:</h1>
+            <h1>Showing all services:</h1>
             <div className={"project-list"}>
-                {customers.map((item) => {
-                    return <div className={"project-list-item"} key={item.id}><span  className={"project-span"}>Customer ID:</span> {item.id}
-                        <br/><span className={"project-span"}>Customer Name:</span> {item.name}
-                        <br/><span className={"project-span"}>Email:</span> {item.email}
+                {servicess.map((item) => {
+                    return <div className={"project-list-item"} key={item.id}><span  className={"project-span"}>Service ID:</span> {item.id}
+                        <br/><span className={"project-span"}>Service Name:</span> {item.name}
+                        <br/><span className={"project-span"}>Description: </span>{item.description}
+                        <br/><span className={"project-span"}>Description:</span> {item.price + " €"}
                         <br/><span className={"project-span"}>Project:</span> <b>{item.projectName}</b><i>({item.projectId}</i>)
                         <br/><button className={"delete-btn"} onClick={()=> handleDelete(item.id)}>Delete</button>
                     </div>
@@ -68,4 +69,4 @@ const AllCustomers = () => {
     );
 };
 
-export default AllCustomers;
+export default AllServices;

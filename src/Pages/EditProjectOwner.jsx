@@ -1,8 +1,8 @@
 import {useState} from "react";
 
-const EditCustomer = () => {
+const EditProjectOwner = () => {
     const [id, setId] = useState("");
-    const [customer, setCustomer] = useState();
+    const [owner, setOwner] = useState();
     const [showForm, setShowForm] = useState(true);
     const [isSuccess, setIsSuccess] = useState(false);
 
@@ -11,9 +11,9 @@ const EditCustomer = () => {
     const [projectId, setProjectId] = useState("");
 
 
-    const url = "http://localhost:5041/api/Customer";
+    const url = "http://localhost:5041/api/ProjectOwner";
 
-    const handleGetCustomer = async (id) => {
+    const handleGetOwner = async (id) => {
         try {
             const response = await fetch(`${url}/${id}`, {
                 method: "GET",
@@ -23,26 +23,26 @@ const EditCustomer = () => {
             });
 
             if (!response.ok) {
-                console.log(`Failed to get customer: ${response.status}`);
+                console.log(`Failed to get project owner: ${response.status}`);
                 setIsSuccess("noUser");
             }
 
 
             const result = await response.json();
 
-            setCustomer(result);
+            setOwner(result);
             setName(result.name);
             setEmail(result.email);
             setProjectId(result.projectId)
 
             console.log("Server response:", result);
         } catch (error) {
-            console.log("Error deleting project:", error);
+            console.log("Error getting project owner:", error);
         }
 
     };
 
-    const handleUpdateCustomer = async (event) => {
+    const handleUpdateOwner = async (event) => {
         event.preventDefault();
 
         const updatedProject = {
@@ -61,39 +61,39 @@ const EditCustomer = () => {
             });
 
             if (!response.ok) {
-                console.log(`Failed to update customer: ${response.status}`);
+                console.log(`Failed to update project: ${response.status}`);
                 setIsSuccess("false");
                 return;
             }
 
             const result = await response.json();
-            console.log("Customer updated successfully:", result);
+            console.log("Project owner updated successfully:", result);
             setShowForm(false);
             setIsSuccess("true");
         } catch (error) {
-            console.log("Error updating customer:", error);
+            console.log("Error updating project owner:", error);
         }
     };
 
     return (
 
         <div className={"project-edit"}>
-            <h1>Edit Customer Here</h1>
-            <h2>Type in ID of the Customer you would like to edit</h2>
-            {!customer &&(
+            <h1>Edit Project owner Here</h1>
+            <h2>Type in ID of the Owner you would like to edit</h2>
+            {!owner &&(
                 <div className={"id-register-form"}>
                     <label htmlFor="project-id"></label>
-                    <input type="text" id="project-id" name="projectId" value={id} placeholder={"Customer ID"}
+                    <input type="text" id="project-id" name="projectId" value={id} placeholder={"Project Owner ID"}
                            onChange={(e) => setId(e.target.value)} required/>
-                    <button className={"main-btn"} onClick={() => handleGetCustomer(id)}>Load Customer</button>
+                    <button className={"main-btn"} onClick={() => handleGetOwner(id)}>Load Project Owner</button>
                 </div>
             )}
 
 
-            {customer && showForm && (
-                <form onSubmit={handleUpdateCustomer}>
+            {owner && showForm && (
+                <form onSubmit={handleUpdateOwner}>
                     <div>
-                        <label htmlFor="project-name">Customer Name:</label>
+                        <label htmlFor="project-name">Project Owner Name:</label>
                         <input
                             type="text"
                             id="project-name"
@@ -104,23 +104,23 @@ const EditCustomer = () => {
                         />
                     </div>
                     <div>
-                        <label htmlFor="email">Email:</label>
+                        <label htmlFor="date-due">Email:</label>
                         <input
                             type="email"
-                            id="email"
-                            name="customer-email"
+                            id="date-due"
+                            name="dateDue"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
                         />
                     </div>
 
-                    <button className={"update-btn"} type="submit">Update Customer</button>
+                    <button className={"update-btn"} type="submit">Update Project Owner</button>
                 </form>
             )}
 
             {isSuccess === "true" &&(
-                <div className={"success"}>{"Customer updated successfully"}</div>
+                <div className={"success"}>{"Project owner updated successfully"}</div>
             )}
             {isSuccess === "false" &&(
                 <div className={"error"}>{"Something went wrong"}</div>
@@ -132,4 +132,4 @@ const EditCustomer = () => {
     );
 };
 
-export default EditCustomer;
+export default EditProjectOwner;

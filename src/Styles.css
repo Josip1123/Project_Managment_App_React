@@ -1,15 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Mono:ital,wght@0,200..800;1,200..800&family=Manrope:wght@200..800&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+
 body{
-    font-family: "Roboto Light", serif;
+    font-family: "Roboto", serif;
+    width: 100%;
+
 }
 
 main{
+    margin: 0 auto;
     padding: 1.5rem;
+    max-width: 1200px;
+    min-height: 100vh;
+    color: rgba(53, 50, 50, 0.80);
+
+}
+
+.nav-mobile {
+    border-radius: 1rem;
 }
 nav{
     padding: 1rem;
@@ -88,6 +102,8 @@ nav{
 h1{
     padding: 1rem;
     text-align: center;
+    margin-top: 3rem!important;
+    text-decoration: underline;
 }
 h2{
     font-size: 1.2rem;
@@ -141,15 +157,21 @@ form{
 }
 
 .project-list {
-    margin: 5rem auto;
+    margin: 0 auto;
     padding: 1rem;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
     max-width: max-content;
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+    }
     .project-list-item{
         padding: 1rem;
         line-height: 1.50;
+        text-wrap: pretty;
+        max-width: 45ch;
+
     }
 
     .project-span{
@@ -204,7 +226,6 @@ form{
 }
 
 .project-edit{
-    margin-top: 5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -214,7 +235,6 @@ form{
 }
 
 .create{
-    margin-top: 5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -226,11 +246,15 @@ form{
 .update-btn {
     all: unset;
     text-align: center;
-    height: 2.5rem;
+    height: 3rem;
     width: 10rem;
     margin: 0 auto;
     cursor: pointer;
     color: white;
     background-color: yellowgreen;
     border-radius: .5rem;
+}
+
+.test-span {
+    max-width: 35ch;
 }

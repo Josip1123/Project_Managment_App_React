@@ -51,6 +51,8 @@ const AllProjects = () => {
 
 
     return (
+        <>
+        <h1>Showing all projects:</h1>
         <div className={"project-list"}>
             {projects.map((item) => {
 
@@ -93,6 +95,7 @@ const AllProjects = () => {
                         </div>
             })}
         </div>
+        </>
     );
 };
 

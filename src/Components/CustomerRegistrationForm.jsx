@@ -49,7 +49,7 @@ const CustomerRegistrationForm = () => {
             setIsSuccess("true")
 
         } catch (error) {
-            console.error('Error creating project:', error);
+            console.error('Error creating customer:', error);
         }
         handleReset();
     };
@@ -65,7 +65,7 @@ const CustomerRegistrationForm = () => {
                 </div>
 
                 <div>
-                    <label htmlFor="project-owner-email">Customer Contact:</label>
+                    <label htmlFor="customer-email">Customer Contact:</label>
                     <input type="email" id="customer-email" name="CustomerEmail" value={contact}
                            onChange={(e) => setContact(e.target.value)} required/>
                 </div>

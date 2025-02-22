@@ -8,9 +8,9 @@ function ServicesDropdown() {
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
-                <Dropdown.Item href="/create_customer">Create Service</Dropdown.Item>
-                <Dropdown.Item href="/">Show All Services</Dropdown.Item>
-                <Dropdown.Item href="/">Edit Service</Dropdown.Item>
+                <Dropdown.Item href="/create_service">Create Service</Dropdown.Item>
+                <Dropdown.Item href="/all_services">Show All Services</Dropdown.Item>
+                <Dropdown.Item href="/edit_service">Edit Service</Dropdown.Item>
             </Dropdown.Menu>
         </Dropdown>
     );
